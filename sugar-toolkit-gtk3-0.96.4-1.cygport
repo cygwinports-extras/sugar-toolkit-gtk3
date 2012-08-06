@@ -1,0 +1,16 @@
+inherit pygtk
+
+CATEGORY="Sugar"
+SUMMARY="Sugar Desktop toolkit for GTK3"
+DESCRIPTION="The award-winning Sugar Learning Platform promotes
+collaborative learning through Sugar Activities that encourage critical
+thinking, the heart of a quality education. Designed from the ground up
+especially for children, Sugar offers an alternative to traditional
+office-desktop software."
+HOMEPAGE="http://wiki.sugarlabs.org/"
+SRC_URI="http://download.sugarlabs.org/sources/sucrose/glucose/${PN}/${P}.tar.bz2"
+PATCH_URI="0.96.4-gstreamer.patch"
+
+REQUIRES="girepository-GConf2.0 girepository-Rsvg2.0"
+
+KEEP_LA_FILES="none"
