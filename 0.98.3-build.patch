@@ -1,0 +1,21 @@
+--- origsrc/sugar-toolkit-gtk3-0.98.3/src/sugar3/Makefile.am	2013-01-20 18:46:00.388400100 -0600
++++ src/sugar-toolkit-gtk3-0.98.3/src/sugar3/Makefile.am	2013-01-20 19:06:06.348377000 -0600
+@@ -19,7 +19,7 @@ libsugarext_la_CFLAGS = 		\
+ 	$(WARN_CFLAGS)
+ 
+ libsugarext_la_LDFLAGS = $(LDADD)
+-libsugarext_la_LIBADD = $(EXT_LIBS) -lSM -lICE
++libsugarext_la_LIBADD = event-controller/libsugar-eventcontroller.la $(EXT_LIBS) -lSM -lICE
+ 
+ libsugarext_la_SOURCES =		\
+ 	$(BUILT_SOURCES)		\
+--- origsrc/sugar-toolkit-gtk3-0.98.3/src/sugar3/event-controller/Makefile.am	2012-09-16 05:23:15.000000000 -0500
++++ src/sugar-toolkit-gtk3-0.98.3/src/sugar3/event-controller/Makefile.am	2013-01-20 19:03:36.067781500 -0600
+@@ -48,6 +48,7 @@ EXTRA_DIST =				\
+ 	sugar-enum-types.h.template
+ 
+ -include $(INTROSPECTION_MAKEFILE)
++SugarGestures-1.0.gir: libsugar-eventcontroller.la
+ INTROSPECTION_GIRS = SugarGestures-1.0.gir
+ INTROSPECTION_SCANNER_ARGS = --identifier-prefix=Sugar --symbol-prefix=sugar
+ SugarGestures_1_0_gir_LIBS = libsugar-eventcontroller.la
