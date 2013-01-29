@@ -1,0 +1,44 @@
+--- origsrc/sugar-toolkit-gtk3-0.98.3/configure.ac	2012-12-21 08:48:42.000000000 -0600
++++ src/sugar-toolkit-gtk3-0.98.3/configure.ac	2013-01-20 21:17:42.898393100 -0600
+@@ -20,7 +20,7 @@ AM_CHECK_PYTHON_HEADERS(,[AC_MSG_ERROR(c
+ 
+ AC_PATH_PROG(PYGTK_CODEGEN, pygtk-codegen-2.0, no)
+ 
+-PKG_CHECK_MODULES(EXT, gtk+-3.0 gdk-3.0 gdk-pixbuf-2.0 sm ice alsa librsvg-2.0)
++PKG_CHECK_MODULES(EXT, gtk+-3.0 gdk-3.0 gdk-pixbuf-2.0 sm ice librsvg-2.0)
+ 
+ PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
+ AC_SUBST(PYGTK_DEFSDIR)
+--- origsrc/sugar-toolkit-gtk3-0.98.3/src/sugar3/Makefile.am	2013-01-20 21:15:30.240047600 -0600
++++ src/sugar-toolkit-gtk3-0.98.3/src/sugar3/Makefile.am	2013-01-20 21:17:35.284426200 -0600
+@@ -14,7 +14,6 @@ sugar_PYTHON =		\
+ lib_LTLIBRARIES = libsugarext.la
+ 
+ libsugarext_la_CFLAGS = 		\
+-	-DHAVE_ALSA		\
+ 	$(EXT_CFLAGS)	\
+ 	$(WARN_CFLAGS)
+ 
+@@ -19,12 +19,10 @@ libsugarext_la_CFLAGS = 		\
+ 	$(WARN_CFLAGS)
+ 
+ libsugarext_la_LDFLAGS = $(LDADD)
+-libsugarext_la_LIBADD = $(EXT_LIBS) -lSM -lICE -lasound
++libsugarext_la_LIBADD = $(EXT_LIBS) -lSM -lICE
+ 
+ libsugarext_la_SOURCES =		\
+ 	$(BUILT_SOURCES)		\
+-	acme-volume-alsa.c		\
+-	acme-volume-alsa.h		\
+ 	acme-volume.c			\
+ 	acme-volume.h			\
+ 	eggaccelerators.c		\
+@@ -123,8 +120,6 @@ SugarExt_1_0_gir_LIBS = libsugarext.la $
+ SugarExt_1_0_gir_FILES = \
+ 	acme-volume.c \
+ 	acme-volume.h \
+-	acme-volume-alsa.c \
+-	acme-volume-alsa.h \
+ 	eggsmclient.c \
+ 	eggsmclient.h \
+ 	eggsmclient-xsmp.c \

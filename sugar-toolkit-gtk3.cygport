@@ -12,6 +12,6 @@ especially for children, Sugar offers an alternative to traditional
 office-desktop software."
 HOMEPAGE="http://wiki.sugarlabs.org/"
 SRC_URI="http://download.sugarlabs.org/sources/sucrose/glucose/${PN}/${P}.tar.bz2"
-PATCH_URI="0.96.4-gstreamer.patch  0.98.3-build.patch"
+PATCH_URI="0.98.3-no-alsa.patch  0.98.3-build.patch"
 
 REQUIRES="girepository-GConf2.0 girepository-Rsvg2.0"

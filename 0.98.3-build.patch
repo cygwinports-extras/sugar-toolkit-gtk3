@@ -9,6 +9,14 @@
  
  libsugarext_la_SOURCES =		\
  	$(BUILT_SOURCES)		\
+@@ -109,6 +109,7 @@ CLEANFILES = $(BUILT_SOURCES) _sugarbase
+ EXTRA_DIST = sugar-marshal.list _sugarbaseext.override _sugarbaseext.defs
+ 
+ -include $(INTROSPECTION_MAKEFILE)
++SugarExt-1.0.gir: libsugarext.la
+ INTROSPECTION_GIRS = SugarExt-1.0.gir
+ INTROSPECTION_SCANNER_ARGS = --identifier-prefix=Sugar --symbol-prefix=sugar \
+ 	--identifier-prefix=EggSM --symbol-prefix=egg_sm \
 --- origsrc/sugar-toolkit-gtk3-0.98.3/src/sugar3/event-controller/Makefile.am	2012-09-16 05:23:15.000000000 -0500
 +++ src/sugar-toolkit-gtk3-0.98.3/src/sugar3/event-controller/Makefile.am	2013-01-20 19:03:36.067781500 -0600
 @@ -48,6 +48,7 @@ EXTRA_DIST =				\
