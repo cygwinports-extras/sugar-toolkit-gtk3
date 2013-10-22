@@ -1,7 +1,7 @@
 inherit pygtk
 
 NAME="sugar-toolkit-gtk3"
-VERSION=0.98.3
+VERSION=0.98.7
 RELEASE=1
 CATEGORY="Sugar"
 SUMMARY="Sugar Desktop toolkit for GTK3"
@@ -11,7 +11,11 @@ thinking, the heart of a quality education. Designed from the ground up
 especially for children, Sugar offers an alternative to traditional
 office-desktop software."
 HOMEPAGE="http://wiki.sugarlabs.org/"
-SRC_URI="http://download.sugarlabs.org/sources/sucrose/glucose/${PN}/${P}.tar.bz2"
-PATCH_URI="0.98.3-no-alsa.patch  0.98.3-build.patch"
+SRC_URI="http://download.sugarlabs.org/sources/sucrose/glucose/${NAME}/${NAME}-${VERSION}.tar.bz2"
+PATCH_URI="
+	0.98.3-no-alsa.patch
+	0.98.3-build.patch
+	0.98.7-Winherit-decls.patch
+"
 
 REQUIRES="girepository-GConf2.0 girepository-Rsvg2.0"
