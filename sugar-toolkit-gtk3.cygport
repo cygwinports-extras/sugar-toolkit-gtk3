@@ -13,9 +13,11 @@ office-desktop software."
 HOMEPAGE="http://wiki.sugarlabs.org/"
 SRC_URI="http://download.sugarlabs.org/sources/sucrose/glucose/${NAME}/${NAME}-${VERSION}.tar.bz2"
 PATCH_URI="
-	0.98.3-no-alsa.patch
+	0.98.7-no-alsa.patch
 	0.98.3-build.patch
 	0.98.7-Winherit-decls.patch
 "
+
+DISTCLEANFILES="src/sugar3/acme-volume-dummy.*"
 
 REQUIRES="girepository-GConf2.0 girepository-Rsvg2.0"
