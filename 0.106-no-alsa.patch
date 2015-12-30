@@ -42,8 +42,8 @@
  	eggsmclient.h \
  	eggsmclient-xsmp.c \
 --- origsrc/sugar-toolkit-gtk3-0.106.1/src/sugar3/acme-volume-dummy.c	1969-12-31 18:00:00.000000000 -0600
-+++ src/sugar-toolkit-gtk3-0.106.1/src/sugar3/acme-volume-dummy.c	2015-12-30 00:17:42.347489800 -0600
-@@ -0,0 +1,84 @@
++++ src/sugar-toolkit-gtk3-0.106.1/src/sugar3/acme-volume-dummy.c	2015-12-30 02:58:06.580964400 -0600
+@@ -0,0 +1,91 @@
 +/* acme-volume-dummy.c
 +
 +   Copyright (C) 2002, 2003 Bastien Nocera
@@ -116,6 +116,13 @@
 +{
 +}
 +
++AcmeVolumeDummy *
++acme_volume_dummy_new(gint type)
++{
++	AcmeVolumeDummy *obj = g_object_new(ACME_TYPE_VOLUME_DUMMY, NULL);
++	return obj;
++}
++
 +static void
 +acme_volume_dummy_class_init (AcmeVolumeDummyClass *klass)
 +{
@@ -129,8 +136,8 @@
 +	volume_class->get_threshold = acme_volume_dummy_get_threshold;
 +}
 --- origsrc/sugar-toolkit-gtk3-0.106.1/src/sugar3/acme-volume-dummy.h	1969-12-31 18:00:00.000000000 -0600
-+++ src/sugar-toolkit-gtk3-0.106.1/src/sugar3/acme-volume-dummy.h	2015-12-30 00:17:42.355490200 -0600
-@@ -0,0 +1,44 @@
++++ src/sugar-toolkit-gtk3-0.106.1/src/sugar3/acme-volume-dummy.h	2015-12-30 02:59:23.559367400 -0600
+@@ -0,0 +1,45 @@
 +/* acme-volume-dummy.h
 +
 +   Copyright (C) 2002, 2003 Bastien Nocera
@@ -175,3 +182,4 @@
 +};
 +
 +GType acme_volume_dummy_get_type		(void);
++AcmeVolumeDummy *acme_volume_dummy_new		(gint);
