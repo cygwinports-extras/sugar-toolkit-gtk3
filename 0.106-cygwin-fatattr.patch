@@ -1,0 +1,52 @@
+--- origsrc/sugar-toolkit-gtk3-0.106.1/src/sugar3/sugar-fatattr.c	2015-01-04 07:29:16.000000000 -0600
++++ src/sugar-toolkit-gtk3-0.106.1/src/sugar3/sugar-fatattr.c	2015-12-30 01:29:18.987243500 -0600
+@@ -21,10 +21,12 @@
+ // Gives us O_NOATIME
+ #define _GNU_SOURCE
+ 
++#ifdef __linux__
+ #include <sys/types.h>
+ #include <sys/ioctl.h>
+ #include <fcntl.h>
+ #include <linux/msdos_fs.h>
++#endif
+ 
+ #include <glib.h>
+ 
+@@ -32,6 +34,13 @@
+ #include <stdio.h>
+ #include <string.h>
+ 
++#ifdef __CYGWIN__
++#define WIN32_LEAN_AND_MEAN
++#include <windows.h>
++#include <sys/cygwin.h>
++#endif
++
++#ifdef __linux__
+ // This function is wrapped by getattrs/setattrs
+ static int _ioctl_attrs(char *file, __u32 *attrs, int ioctlnum, char *verb)
+ {
+@@ -81,6 +90,22 @@ static int set_hidden_attrib(char *pathn
+ 
+     return -1;
+ }
++#endif /* __linux__ */
++
++#ifdef __CYGWIN__
++static int set_hidden_attrib(char *pathname)
++{
++  wchar_t *winpath;
++  ssize_t size;
++  DWORD attrs;
++
++  size = cygwin_conv_path (CCP_POSIX_TO_WIN_W, pathname, NULL, 0);
++  winpath = (wchar_t *) alloca (size);
++  cygwin_conv_path (CCP_POSIX_TO_WIN_W, pathname, winpath, size);
++  attrs = GetFileAttributes (winpath);
++  return !SetFileAttributesW (winpath, attrs | FILE_ATTRIBUTE_HIDDEN);
++}
++#endif /* __CYGWIN__ */
+ 
+ /**
+  * Set the FAT HIDDEN attribute.
